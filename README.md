@@ -1,4 +1,4 @@
-# NFL Prop Bet Generator (Coming soon...)
+# NFL Prop Bet Generator 
 
 This repository provides an AI-driven tool for generating creative NFL prop bets based on real-time NFL news headlines. The system uses RSS feeds, natural language processing (NLP), sentiment analysis, and OpenAI's API to produce prop bets related to NFL players, with accompanying odds and betting recommendations.
 
