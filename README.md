@@ -2,53 +2,173 @@
 
 ![GetRichQuick](getrichquick.png?raw=true "getrichquick")
 
-This repository provides an AI-driven tool for generating creative NFL prop bets based on real-time NFL news headlines. The system uses RSS feeds, natural language processing (NLP), sentiment analysis, and OpenAI's API to produce prop bets related to NFL players, with accompanying odds and betting recommendations.
+This repository provides an AI-driven tool for generating creative NFL prop bets based on real-time NFL news headlines. The system uses RSS feeds, natural language processing (NLP), sentiment analysis, and OpenAI's API to produce prop bets related to NFL players, with accompanying odds and betting recommendations. This system now uses improved artificial intelligence to analyze NFL news headlines, identify player trends, and generate intelligent prop betting recommendations with continuous self-improvement capabilities.
 
-## V2.0 UPDATES
 
-I've successfully implemented all the requested features for the GenAI-powered NFL Sports Prop Betting system. Here's a summary of what's been added:
+## NEW FEATURES
 
-1. User Interface with Point-and-Click Bet Generation
-✅ Created a modern web interface using Flask and Bootstrap
-✅ Implemented a dashboard showing player data, headlines, and betting performance
-✅ Added "Generate Bet" buttons for one-click prop bet creation from any headline
-✅ Developed detailed player profile pages with headline listings and bet history
+### 1. User Interface with Point-and-Click Bet Generation
+- Modern web interface built with Flask and Bootstrap
+- Dashboard displaying player data, news headlines, and betting performance
+- One-click prop bet generation from any headline
+- Detailed player profiles with performance analytics
+- Interactive visualizations of betting success over time
 
-2. Bet Accuracy Tracking System
-✅ Implemented automated verification of bet outcomes
-✅ Added performance analytics by prop type, player position, and team
-✅ Created visual dashboards showing success rate over time
-✅ Built confidence calibration to improve prediction accuracy
+### 2. Bet Accuracy Tracking
+- Automated verification of bet outcomes
+- Performance analytics by prop type, player position, and team
+- Confidence calibration to improve prediction accuracy
+- Historical tracking of all bets with success/failure rates
+- Visual dashboards showing AI's prediction accuracy over time
 
-3. Personal Events Tracking
-✅ Added automatic detection and categorization of personal events in headlines
-✅ Implemented correlation analysis between personal events and betting outcomes
-✅ Created visualization of how different events affect performance
-✅ Built system to track which personal events are most predictive for each player
+### 3. Personal Event Tracking
+- Automatic detection of personal events in news headlines
+- Categorization by event type (relationship, legal, injury, etc.)
+- Correlation analysis between personal events and on-field performance
+- Integration of personal event data into betting predictions
+- Ongoing learning about event impact through reinforcement
 
-4. Self-Assessment Model Training Engine
-✅ Implemented ML pipeline with RandomForest classifier
-✅ Added feature engineering from headlines, player data, and betting history
-✅ Created automated model retraining based on verified outcomes
-✅ Added performance comparison across model versions
+### 4. Self-Assessment Model Training Engine
+- Machine learning pipeline for continuous model improvement
+- Feature extraction from headlines, player data, and betting history
+- Automated model retraining based on betting outcomes
+- Performance comparison across model versions
+- Advanced pattern recognition for betting success factors
 
-5. Betting Performance Tracking
-✅ Built comprehensive logging of all generated bets with reasoning
-✅ Added detailed analytics on success rates across different dimensions
-✅ Created visualizations showing performance trends over time
-✅ Implemented statistical analysis of factors contributing to accurate predictions
+### 5. Betting Performance Tracking
+- Comprehensive logging of all generated bets
+- Detailed reasoning and confidence for each prediction
+- Success rate analytics across different dimensions
+- Statistical analysis of factors contributing to accurate predictions
+- Trend identification for betting strategy optimization
 
-6. Automated Feedback & Reinforcement Learning
-✅ Added detailed explanation logging for each prediction
-✅ Implemented pattern discovery system for successful vs. unsuccessful bets
-✅ Created Bayesian updating of confidence calibration
-✅ Built scheduled tasks for continuous model improvement
+### 6. Feedback & Reinforcement Learning
+- Automated verification of game results
+- Detailed explanation logging for each prediction
+- Pattern discovery in successful vs. unsuccessful bets
+- Bayesian updating of confidence calibration
+- Continuous improvement through outcome tracking
 
-7. LangChain Integration
-✅ Replaced basic OpenAI API calls with structured LangChain implementations
-✅ Added reasoning chains for prop bet generation with detailed explanations
-✅ Implemented context-aware prompt templates for consistent outputs
-✅ Added memory components to improve player analysis
+### 7. LangChain Integration
+- Structured reasoning chains for bet generation
+- Named entity recognition for player identification
+- Sentiment analysis of news headlines
+- Knowledge graph integration for player relationships
+- Context-aware prompt templates for consistent outputs
+
+## System Architecture
+
+### Database Schema
+The system uses SQLite with the following core tables:
+- `players`: Player profiles with metadata and sentiment scores
+- `headlines`: News headlines with sentiment analysis and sourcing
+- `prop_bets`: Generated betting propositions with predictions and outcomes
+- `personal_events`: Personal events detected for players
+- `betting_patterns`: Discovered patterns in successful betting
+- `model_performance`: Historical performance of ML models
+- `bet_explanations`: Detailed reasoning behind each prediction
+
+### Key Components
+
+#### Data Collection
+- RSS feed parsing from 20+ NFL news sources
+- Named entity recognition to extract player mentions
+- Sentiment analysis of headlines
+- Team and position inference for players
+
+#### Bet Generation
+- LangChain-powered reasoning for prop bet creation
+- Dynamic odds calculation based on confidence
+- Multi-factor analysis incorporating:
+  - Headline sentiment
+  - Player history
+  - Personal events
+  - Position-specific patterns
+  - Team context
+
+#### Machine Learning Pipeline
+- Random Forest classifier for outcome prediction
+- Feature engineering from headline data
+- Model version tracking and comparison
+- Calibration of confidence scores
+- Advanced pattern discovery
+
+#### Visualization & Analytics
+- Success rate trends over time
+- Confidence vs. actual success rate analysis
+- Position-specific performance insights
+- Personal event impact visualization
+- Betting pattern effectiveness charts
+
+## Getting Started
+
+### Prerequisites
+- Python 3.8+
+- Flask
+- LangChain
+- OpenAI API key (for LLM access)
+- spaCy with English model
+- pandas, matplotlib, seaborn for analytics
+- scikit-learn for ML components
+
+### Installation
+1. Clone the repository
+2. Install dependencies: `pip install -r requirements.txt`
+3. Set up your OpenAI API key: `export OPENAI_API_KEY="your-api-key"`
+4. Initialize the database: `python app.py init_db`
+5. Run the application: `python app.py`
+
+### Usage
+1. Access the web interface at `http://localhost:5000`
+2. Click "Update News" to fetch the latest NFL headlines
+3. Browse player profiles or view the analytics dashboard
+4. Click "Generate Bet" on any headline to create prop bets
+5. View betting history and system performance in the Analytics section
+
+## System Architecture Diagram
+
+```
+┌─────────────────┐     ┌──────────────────┐     ┌───────────────────┐
+│  RSS News Feeds │────▶│ NLP Processing   │────▶│ Sentiment Analysis│
+└─────────────────┘     │ (spaCy + LangChain)    └───────────────────┘
+                        └──────────────────┘              │
+                                │                         ▼
+                                ▼                  ┌───────────────┐
+┌─────────────────┐     ┌──────────────────┐      │ Personal Event │
+│  OpenAI API     │◀───▶│ Prop Bet         │◀────▶│ Detection      │
+└─────────────────┘     │ Generation       │      └───────────────┘
+                        └──────────────────┘              │
+                                │                         │
+                                ▼                         ▼
+                        ┌──────────────────┐     ┌───────────────────┐
+                        │ Database Storage │────▶│ ML Model Training │
+                        └──────────────────┘     └───────────────────┘
+                                │                         │
+                                ▼                         ▼
+                        ┌──────────────────┐     ┌───────────────────┐
+                        │ Flask Web        │     │ Pattern Discovery │
+                        │ Interface        │◀───▶│ & Analysis        │
+                        └──────────────────┘     └───────────────────┘
+```
+
+## Key Files
+
+- `app.py`: Main application with Flask routes and core functionality
+- `templates/`: HTML templates for web interface
+- `static/`: CSS, JavaScript, and generated visualizations
+- `bet_prediction_model.pkl`: Serialized ML model for prediction
+- `calibration_model.json`: Confidence calibration data
+
+## TODO
+
+1. **Expanded Data Sources**: Integration with player statistics APIs and historical game data
+2. **Real-time Updating**: WebSocket implementation for live odds updates during games
+3. **Multi-sport Expansion**: Extend to NBA, MLB, and other sports leagues
+4. **User Customization**: Allow users to adjust confidence thresholds and betting preferences
+5. **Advanced Visualization**: Interactive exploration of betting patterns and correlations
+
+
+
 
 ## V1 Features
 
@@ -58,7 +178,7 @@ I've successfully implemented all the requested features for the GenAI-powered N
 - **AI-Generated Prop Bets**: Creates unique prop bets using OpenAI's API based on each headline.
 - **Database Storage**: Stores player data, headlines, sentiment scores, and generated prop bets in an SQLite database.
 
-## Installation
+## Installation (V1)
 
 1. **Clone the repository**:
    ```bash
@@ -76,7 +196,7 @@ I've successfully implemented all the requested features for the GenAI-powered N
 3. **Set up OpenAI API key**:
    Replace `sk-proj-3c39_W2Vsa...` with your own OpenAI API key in the `client` initialization.
 
-## Usage
+## Usage  (V1)
 
 1. **Run the script**:
    Execute the script to fetch headlines, process player names, analyze sentiment, and generate prop bets.
@@ -88,13 +208,13 @@ I've successfully implemented all the requested features for the GenAI-powered N
    - **Player profiles**: Displays each player's headlines and overall sentiment score.
    - **Generated Prop Bets**: Prop bets generated by the AI are stored in the SQLite database (`nfl_players.db`), under the `prop_bets` table.
 
-## Database Structure
+## Database Structure  (V1)
 
 - **`players` Table**: Contains unique player IDs and aggregated sentiment scores.
 - **`headlines` Table**: Stores headlines associated with each player.
 - **`prop_bets` Table**: Contains AI-generated prop bets linked to each player and headline.
 
-## Example Workflow
+## Example Workflow  (V1)
 
 1. **Fetch Headlines**: Retrieves NFL headlines from specified RSS feeds.
 2. **Identify Players**: Extracts player names using spaCy's Named Entity Recognition.
